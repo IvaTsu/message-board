@@ -1,7 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import { applyMiddleware, createStore } from 'redux';
+import thunk from 'redux-thunk';
+import { Provider } from 'react-redux';
+import reducers from './Reducers/index';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-ReactDOM.render(<App />, document.getElementById('root'));
+const crateStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+
+ReactDOM.render(
+    <Provider store={crateStoreWithMiddleware(reducers)}>
+        <App />
+    </Provider>, document.getElementById('root'));
 registerServiceWorker();
