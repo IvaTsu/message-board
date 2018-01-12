@@ -14,10 +14,12 @@ class App extends Component {
   renderPosts() {
     return _.map(this.props.posts, (post, key) => {
       return (
-        <div key={key}>
-          <h3>{post.title}</h3>
-          <p>{post.body}</p>
-          <button onClick={() => {this.props.deletePost(key)}}>Delete</button>
+        <div key={key} className="card post">
+          <div className="card-block">
+            <h3 className="card-title">{post.title}</h3>
+            <p className="card-text">{post.body}</p>
+            <button class-name="btn btn-danger" onClick={() => {this.props.deletePost(key)}}>Delete</button>
+          </div>
         </div>
       )
     })
@@ -25,7 +27,7 @@ class App extends Component {
 
   renderField(field) {
     return (
-      <input type="text" {...field.input} placeholder={`Please enter a ${field.label}`}/>
+      <input className="field.class" type="text" {...field.input} placeholder={`Please enter a ${field.label}`}/>
     )
   };
 
@@ -37,24 +39,24 @@ class App extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
-        <div>
+        <div className="container">
           {this.renderPosts()}
         </div>
-        <div>
+        <div className="navbar fixed-bottom">
           <form onSubmit={handleSubmit(this.onSubmit.bind(this))}>
             <Field
               name="title"
               component={this.renderField}
               label="title"
-              class=""
+              class="footer-title"
             />
             <Field
               name="body"
               component={this.renderField}
               label="body"
-              class=""
+              class="footer-body"
             />
-            <button type="submit">Post</button>
+            <button type="submit" className="btn footer-btn">Post</button>
           </form>
         </div>
       </div>
