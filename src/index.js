@@ -8,6 +8,7 @@ import reducers from './Reducers/index';
 import ListPosts from './Containers/ListPosts';
 import registerServiceWorker from './registerServiceWorker';
 import Login from './Components/Login';
+import CreateAccount from './Containers/CreateAccount';
 
 const crateStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
@@ -15,6 +16,7 @@ ReactDOM.render(
     <Provider store={crateStoreWithMiddleware(reducers)}>
         <BrowserRouter>
             <Switch>
+                <Route path="/CreateAccount" component={CreateAccount} />
                 <Route path="/Login" component={Login} />
                 <Route path="/" component={ListPosts} />
             </Switch>
