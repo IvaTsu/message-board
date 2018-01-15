@@ -6,7 +6,7 @@ const FooterFormButton = (props) => {
         <div className="d-flex justify-content-between">
             <button type="submit" className="btn btn-primary">{submitLabel}</button>
             <button type="button" className="btn btn-info" onClick={() => {
-                history.push(goToLink)
+                history.push(goToLink )
             }}>{otherLabel}</button>
         </div>
     );
