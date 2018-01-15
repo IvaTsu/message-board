@@ -10,7 +10,8 @@ const InputField = (props) => {
             <label htmlFor={props.id} className="col-sm-2 col-form-label">{props.label}</label>
             <input onChange={props.inputAction} type={props.type}
                 id={props.id} className="form-control"
-                placeholder={`Please enter ${isVowel(props.label[0]) ? "an" : "a"} ${props.label}`} />
+                placeholder={`Please enter ${isVowel(props.label[0]) ? "an" : "a"} ${props.label}`}
+                style={props.style} />
         </div>
     );
 }
