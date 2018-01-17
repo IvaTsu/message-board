@@ -1,4 +1,4 @@
-import { auth } from './../Firebase';
+import { auth, googleProvider, twitterProvider } from './../Firebase';
 
 export const GET_USER = 'get_user';
 export function getUser() {
@@ -14,6 +14,14 @@ export function getUser() {
 
 export function login(email, password) {
     return dispatch => auth.signInWithEmailAndPassword(email, password);
+}
+
+export function googleLogin() {
+    return dispatch => auth.signInWithPopup(googleProvider);
+}
+
+export function twitterLogin() {
+    return dispatch => auth.signInWithPopup(twitterProvider);
 }
 
 export function createAccount(email, password) {

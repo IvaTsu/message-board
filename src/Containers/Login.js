@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
-import RegisterBoard from './RegisterBoard';
-import InputField from './InputField';
-import FooterFormButton from './FooterFormButton';
-import { login, getUser } from './../Actions/UserActions';
+import RegisterBoard from '../Components/RegisterBoard';
+import InputField from '../Components/InputField';
+import FooterFormButton from '../Components/FooterFormButton';
+import { login, getUser, googleLogin, twitterLogin } from '../Actions/UserActions';
 import { connect } from 'react-redux';
-import ErrorAlert from './ErrorAlert';
+import ErrorAlert from '../Components/ErrorAlert';
+import SocialMediaLogin from '../Components/SocialMediaLogin';
 
 export class Login extends Component {
 
@@ -53,6 +54,7 @@ export class Login extends Component {
                     })} style={this.state.error ? errStyle : null} />
                     {this.state.error && <ErrorAlert>Your email/password is incorrect!</ErrorAlert>}
                     <FooterFormButton submitLabel="Sign In" otherLabel="CreateAccount" goToLink="/CreateAccount" {...this.props} />
+                    <SocialMediaLogin {...this.props} />
                 </div>
             </form>
         );
@@ -69,4 +71,4 @@ function mapStateToProps(state) {
     return { user: state.user };
 }
 
-export default connect(mapStateToProps, { login, getUser })(Login);
+export default connect(mapStateToProps, { login, getUser, googleLogin, twitterLogin })(Login);

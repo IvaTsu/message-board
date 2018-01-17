@@ -7,7 +7,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import reducers from './Reducers/index';
 import ListPosts from './Containers/ListPosts';
 import registerServiceWorker from './registerServiceWorker';
-import Login from './Components/Login';
+import Login from './Containers/Login';
 import CreateAccount from './Containers/CreateAccount';
 
 const crateStoreWithMiddleware = applyMiddleware(thunk)(createStore);
