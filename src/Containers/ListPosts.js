@@ -5,7 +5,7 @@ import { Field, reduxForm, reset } from 'redux-form';
 import { getPosts, savePost, deletePost } from './../Actions/PostActions';
 import PostCard from './../Components/PostCard';
 import { getUser, logout } from './../Actions/UserActions';
-import './../App.css';
+import '../Styles/App.css';
 
 class App extends Component {
 
