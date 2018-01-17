@@ -3,14 +3,23 @@ import ReactDOM from 'react-dom';
 import { applyMiddleware, createStore } from 'redux';
 import thunk from 'redux-thunk';
 import { Provider } from 'react-redux';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import reducers from './Reducers/index';
-import App from './App';
+import ListPosts from './Containers/ListPosts';
 import registerServiceWorker from './registerServiceWorker';
+import Login from './Containers/Login';
+import CreateAccount from './Containers/CreateAccount';
 
 const crateStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 
 ReactDOM.render(
     <Provider store={crateStoreWithMiddleware(reducers)}>
-        <App />
+        <BrowserRouter>
+            <Switch>
+                <Route path="/CreateAccount" component={CreateAccount} />
+                <Route path="/Login" component={Login} />
+                <Route path="/" component={ListPosts} />
+            </Switch>
+        </BrowserRouter>
     </Provider>, document.getElementById('root'));
 registerServiceWorker();

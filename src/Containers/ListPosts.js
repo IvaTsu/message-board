@@ -2,25 +2,35 @@ import React, { Component } from 'react';
 import _ from 'lodash';
 import { connect } from 'react-redux';
 import { Field, reduxForm, reset } from 'redux-form';
-import { getPosts, savePost, deletePost } from './Actions/PostActions';
-import './App.css';
+import { getPosts, savePost, deletePost } from './../Actions/PostActions';
+import PostCard from './../Components/PostCard';
+import { getUser, logout } from './../Actions/UserActions';
+import '../Styles/App.css';
 
 class App extends Component {
 
   componentWillMount() {
     this.props.getPosts();
+    this.props.getUser();
+    if (this.props.user.loading === false && this.props.user.email === undefined) {
+      this.props.history.replace('/Login');
+    }
+  }
+
+  componentWillReceiveProps(nextProps) {
+    if (nextProps.user.loading === false && nextProps.user.email === undefined) {
+      this.props.history.replace('/Login');
+    }
   }
 
   renderPosts() {
     return _.map(this.props.posts, (post, key) => {
       return (
-        <div key={key} className="card post">
-          <div className="card-block">
+        <PostCard key={key}>
             <h3 className="card-title">{post.title}</h3>
             <p className="card-text">{post.body}</p>
             <button class-name="btn btn-danger" onClick={() => {this.props.deletePost(key)}}>Delete</button>
-          </div>
-        </div>
+        </PostCard>
       )
     })
   };
@@ -39,6 +49,9 @@ class App extends Component {
     const { handleSubmit } = this.props;
     return (
       <div>
+        <div className="navbar">
+          <button className="btn btn-danger" onClick={() => {this.props.logout()}}>Sign Out</button>
+        </div>
         <div className="container">
           {this.renderPosts()}
         </div>
@@ -68,8 +81,9 @@ let form = reduxForm({
   form: 'NewPost'
 })(App);
 
-form = connect(state => ({
-  posts: state.posts
-}), { getPosts, savePost, deletePost })(form);
+form = connect((state, ownProps) => ({
+  posts: state.posts,
+  user: state.user
+}), { getPosts, savePost, deletePost, getUser, logout })(form);
 
 export default form;
