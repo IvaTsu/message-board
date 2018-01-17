@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import RegisterBoard from '../Components/RegisterBoard';
 import InputField from '../Components/InputField';
 import FooterFormButton from '../Components/FooterFormButton';
-import { login, getUser, googleLogin, twitterLogin } from '../Actions/UserActions';
+import { login, getUser, googleLogin, twitterLogin, facebookLogin } from '../Actions/UserActions';
 import { connect } from 'react-redux';
 import ErrorAlert from '../Components/ErrorAlert';
 import SocialMediaLogin from '../Components/SocialMediaLogin';
@@ -71,4 +71,4 @@ function mapStateToProps(state) {
     return { user: state.user };
 }
 
-export default connect(mapStateToProps, { login, getUser, googleLogin, twitterLogin })(Login);
+export default connect(mapStateToProps, { login, getUser, googleLogin, twitterLogin, facebookLogin })(Login);
